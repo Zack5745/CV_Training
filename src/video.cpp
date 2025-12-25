@@ -1,14 +1,14 @@
+#include "video.hpp"
 #include <iostream>
-#include <opencv2/opencv.hpp>
 
 using namespace cv;
 using namespace std;
 
-int main(){
+void runVideoDemo(){
     VideoCapture cap("../images/xiaoxin.mp4");
     if(!cap.isOpened()){
         cout << "打开视频失败" << endl;
-        return -1;
+        return;
     }
 
     double fps = cap.get(CAP_PROP_FPS);
@@ -27,7 +27,7 @@ int main(){
                 true);   // isColor
     if (!writer.isOpened()) {
         cout << "无法创建输出视频" << endl;
-        return -1;
+        return;
     }
    
     Mat frame;
@@ -61,5 +61,4 @@ int main(){
     writer.release();
     destroyAllWindows();
     cout << "已播放并保存前 30 帧到 video_30frames.mp4" << endl;
-    return 0;
 }
